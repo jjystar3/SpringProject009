@@ -35,7 +35,8 @@ public class CommentServiceTest {
 
 	@Test
 	public void 댓글삭제() {
-		service.remove(1);
+		boolean result = service.remove(1);
+		System.out.println(result);
 	}
 	
 }
