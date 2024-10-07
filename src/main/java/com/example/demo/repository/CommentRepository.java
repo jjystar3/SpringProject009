@@ -15,7 +15,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer>{
 	// 게시물을 기준으로 댓글 리스트 조회 (쿼리메소드)
 	List<Comment> findByBoard(Board board);
 
-	// 게시물을 기준으로 댓글을 모두 삭제
+	// 게시물을 기준으로 댓글을 모두 삭제 (쿼리메소드)
 	void deleteByBoard(Board board);
 
 }

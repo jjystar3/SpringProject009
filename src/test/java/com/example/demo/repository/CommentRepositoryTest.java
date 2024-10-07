@@ -58,6 +58,7 @@ public class CommentRepositoryTest {
 
 	@Test
 	public void 게시물별_댓글조회() {
+		// 1번 게시물에 달린 댓글 목록 조회
 		Board board = Board.builder().no(1).build();
 		List<Comment> list = repository.findByBoard(board);
 		for(Comment comment : list) {

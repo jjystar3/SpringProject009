@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.BoardDTO;
 import com.example.demo.entity.Board;
 import com.example.demo.repository.BoardRepository;
+import com.example.demo.repository.CommentRepository;
 
 //자식 클래스들 중 서비스로 지정
 @Service
@@ -19,6 +20,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	BoardRepository repository; //리파지토리를 빈으로 주입
+	
+	@Autowired
+	CommentRepository commentRepository;
 	
 	@Override
 	public int register(BoardDTO dto) {
@@ -113,6 +117,13 @@ public class BoardServiceImpl implements BoardService {
 		Optional<Board> optional = repository.findById(no);
 
 		if(optional.isPresent()) {
+			
+			// 게시물에 달린 댓글 먼저 삭제
+			Board board = Board.builder().no(no).build();
+			
+			commentRepository.deleteByBoard(board);
+			
+			// 게시물 삭제
 			repository.deleteById(no);
 		}
 		
