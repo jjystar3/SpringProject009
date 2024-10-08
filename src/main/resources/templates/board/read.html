@@ -39,8 +39,7 @@
 <div class="card-body" id="commentdiv">
 </div>
 <div class="card-body">
-<textarea class="form-control" id="commentContent" rows="3">
-</textarea>
+<textarea class="form-control" id="commentContent" rows="3"></textarea>
 <button type="button" class="btn btn-secondary" onclick="registerComment()">댓글등록</button>
 </div>
 </div>
@@ -119,6 +118,7 @@
     	})
 	}
 
+	// 댓글 등록 이벤트
   	function registerComment() {
   		var board = [[${dto}]];
   		let commentContent = document.getElementById("commentContent");
@@ -133,13 +133,16 @@
 		    data: commentDto,
     		success: function(list){
  	  			if(list){
+ 	  				// textarea 필드 초기화
 					commentContent.value = null;
+ 	  				// 기존 내용을 지우고 댓글 목록을 다시 출력
 					showComment();
 				}
     		}
 		})
 	}
 
+	// 댓글 삭제 이벤트
 	function removeComment(commentNo){
 
 		$.ajax({
